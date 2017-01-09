@@ -35,18 +35,26 @@ void movesubarray2(int arr[], int sz, int pos)
 {
     int tmp   = arr[0];
     int idx   = 0; //current position
-    int count = 0; //total data moved
+    int count = 1; //total data moved
     int start_idx = 0; //starting pos of current loop
 
-    while(count < sz-1)
+    while(count <= sz)
     {
-        if(idx = start_idx){ //loop end, but not finish move
+        int next_pos = (idx+pos >= sz)? (idx+pos)%sz : idx+pos;
+        if(next_pos == start_idx) { //loop end, but not finish move
+
+            arr[idx] = tmp; 
             start_idx += 1;
             idx = start_idx;
+            tmp = arr[idx];
+
+        }
+        else {
+
+            arr[idx] = arr[next_pos]; 
+            idx = next_pos;
         }
 
-        arr[idx] = arr[idx+pos]; 
-        idx = (idx+pos) % pos;
         count++;
     }
 }

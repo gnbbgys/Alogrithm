@@ -3,3 +3,5 @@
 *.gch
 *.*.h.swp
 *.o
+*.*.c.swo
+*.*.h.swo
