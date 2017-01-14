@@ -36,3 +36,29 @@ int  gen_random(int mod, int arr[], int sz)
         arr[idx] = rand() % mod;
     }
 }
+
+
+int max(int val1, int val2)
+{
+    return (val1 > val2)? val1 : val2;
+}
+
+void swap(int* x, int* y)
+{
+    if(x == NULL || y == NULL) return;
+    int tmp = *x;
+    *x = *y;
+    *y = tmp;
+}
+
+void reverse(int arr[], int sz)
+{
+    int i = 0;
+    int j = sz-1;
+    while(i<j)
+    {
+        swap(&arr[i++], &arr[j--]);
+    }
+}
+
+

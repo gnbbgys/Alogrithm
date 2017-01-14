@@ -60,10 +60,14 @@ void movesubarray2(int arr[], int sz, int pos)
 }
 
 //recursive method
-
-//use reverse 
 void movesubarray3(int arr[], int sz, int pos)
 {
-
 }
 
+//use reverse 
+void movesubarray4(int arr[], int sz, int pos)
+{
+    reverse(arr, pos);
+    reverse(arr+pos, sz-pos); 
+    reverse(arr, sz);
+}
