@@ -1,7 +1,9 @@
 //tree.h
 
-typedef struct Node{
-    struct Node* left;
-    struct Node* right;
+typedef struct node{
+    struct node* left;
+    struct node* right;
     int   value;
-} Node;
+} node;
+
+
