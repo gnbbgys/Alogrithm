@@ -70,3 +70,6 @@ struct node* create_tree(int depth)
 
     return curr;
 }
+
+
+

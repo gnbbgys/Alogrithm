@@ -1,9 +1,12 @@
 //tree.h
 
-typedef struct node{
-    struct node* left;
-    struct node* right;
+
+struct node {
+
+    node* left;
+    node* right;
     int   value;
-} node;
 
-
+    node(int v):left(NULL),right(NULL),value(v){
+    }
+};
