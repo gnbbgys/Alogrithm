@@ -1,8 +1,11 @@
 
+a.out
+*.out
 *.*.c.swp
 *.*.cpp.swp
-*.gch
 *.*.h.swp
+*.gch
 *.o
 *.*.c.swo
+*.*.cpp.swo
 *.*.h.swo
