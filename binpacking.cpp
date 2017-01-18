@@ -1,52 +1,53 @@
 
-
 #include <iostream>
-
-struct Node{
-
-public:
-    Node* left;
-    Node* right;
-    Node* parent;
-    double weight;  //remaining weight
-
-    Node(double v):left(NULL),right(NULL),parent(NULL),weight(v){}
-};
+#include "tree.h"
 
 
-void insertObj(Node** root, int v, Node* parent)
+
+
+void binpacking(node* root, int v)
 {
-    if( *root == NULL ) {  //root pointer or no big enough bin found
-        *root = new Node(10-v);
-        (*root)->parent = parent;
-        return;
-    }
+    //search for best bin, if cannot find, insert a new bin
 
-    if(v == (*root)->weight) {
-
-    }
-
-    if(v > (*root)->weight){
-
-    }
-
-    if(v < (*root)->weight){  //current bin is big try to find better one
-        insertObj((*root)->left, v, *root);
-    }
-}
-
-
-int main()
-{
-    int w[10] = {0};
-    gen_random(100, w, 10);
-
-    std::cout << " Creating metal objects ... " << std::endl; 
-    print_array(w, 10);
-
-    Node* root = NULL; 
-    for(int idx = 0; idx < 10; ++idx)
+    node* curMin = ((root->value - v) >= 0)? root : NULL;
+    int   min = (curMin == NULL)?MAX : (root->value - v);
+    while(curr != NULL)
     {
-        insetrtObj(&root, w[idx], root);
+        if(curr->value >= v){
+            if(min > (curr->value - v)){
+                min = curr->value - v;
+                curMin = curr;
+            }
+            curr = curr->left;
+        }
+        else {
+            curr = curr->right;
+        }
+    }
+
+    if(curMin != NULL){
+        curMin->value -= v;
+    }
+    else {
+        insert(root, v);
     }
 }
+
+void insert(node* root, int v)
+{
+    if(root == NULL) {
+    };
+
+    if(root->value >= v){
+        root->left = insert(root->left, v);
+    }
+    else{
+        if(!root->right){
+            root->right = new node(v);
+        }
+        else{
+            insert(root->right, v);
+        }
+    }
+}
+

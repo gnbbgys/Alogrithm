@@ -58,6 +58,31 @@ int get_depth(struct node* root)
     else return right+1;
 }
 
+struct node {
+    node* left;
+    node* right;
+    int   data;
+};
+#include <math.h>
+int treeHeight(node* root)
+{
+    if(root == NULL) return 0;
+    return (1 + max(treeHeight(root->left, root->right)); 
+}
+
+bool isTreeBalanced(struct node* root)
+{
+    if(root == NULL) return 1;
+
+    left  = height(root->left);
+    right = height(root->right);
+
+    bool leftBalanced  = isTreeBalanced(root->left);
+    bool rightBalanced = isTreeBalanced(root->right);
+
+    return (leftBalanced && rightBalanced && (abs(left, right) <= 1));
+}
+
 struct node* create_tree(int depth)
 {
     if(depth == 0) return NULL;

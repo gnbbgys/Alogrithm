@@ -6,9 +6,9 @@ typedef struct node{
     int data;
 }node;
 
-node* newnode(int v)
+struct node* newnode(int v)
 {
-    node* nodenew  = (node*) malloc(sizeof(node));
+    struct node* nodenew  = (struct node*) malloc(sizeof(node));
     nodenew->left  = NULL;
     nodenew->right = NULL;
     nodenew->data  = v;
@@ -25,7 +25,8 @@ void blt_min_tree(node* root, int ls, int re, int a[])
 
     int mid = (ls+re)/2;
 
-    lefttree = blt_min_tree();
+    left_tree  = blt_min_tree();
+    right_tree = blt_min_tree();
 }
 
 
