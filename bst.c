@@ -50,6 +50,8 @@ int compare_trees(node* t1, node* t2)
            compare_tree(t1->right, t2->right);
 }
 
+node* build
+
 int main()
 {
     return 0;
