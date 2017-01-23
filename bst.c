@@ -51,6 +51,73 @@ int compare_trees(node* t1, node* t2)
            compare_tree(t1->right, t2->right);
 }
 
+//wrong, assume it's BST already, how to fix it ??
+int get_max(node* head)
+{
+    int max = head->data;
+    while(head != NULL)
+    {
+        if(head->data > max) max = head->data;
+        head = head->right;
+    }
+}
+
+//wrong, assume it's BST already, how to fix it ??
+int get_min(node* head)
+{
+    int min = head->data;
+    while(head != NULL)
+    {
+        if(head->data < min) min = head->data;
+        head = head->left;
+    }
+}
+
+int is_sub_max(node* h, int v)
+{
+    if(h == NULL) return 1;
+
+    int left_less_v  = is_sub_max(h->left, v);
+    int right_less_v = is_sub_max(h->right, v);
+
+    return left_less_v&&irght_less_v&&(h->data < v);
+}
+
+int is_sub_min(node* h, int v)
+{
+    if(h == NULL) return 1;
+
+    int left_sub_max  = is_sub_max(h->left, v);
+    int right_sub_max = is_sub_max(h->right, v);
+
+    return left_less_v&&irght_less_v&&(h->data < v);
+}
+
+int is_bst(node* head)
+{
+    if(head == NULL) return 1;
+
+    //left is bst, right is bst and curr > max_left and < min_right
+    int sub_max = is_sub_max(head->left, head->data);
+    int sub_min = is_sub_min(head->right, head->data);
+
+    return (sub_max && sub_min && is_bst(head->left) && is_bst(head->right);
+}
+
+//without brutal force search, passdown limit
+//when calling this function, write sth like is_bst(root, INT_MIN, INT_MAX);
+//or if the bound of the elements of the tree known TREE_MIN, TREE_MAX
+int is_bst(node* h, int low, int up)
+{
+    if(h == NULL) return 1;
+
+    //enhancement if current node not bst, stop and return false 
+    if((h->data < up) && (h->data > low)){
+        return is_bst(h->left, low, h->data) && is_bst(h->right, h->data, up);
+    }
+    else {return false;}
+}
+
 int main()
 {
     return 0;

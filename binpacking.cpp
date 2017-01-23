@@ -2,13 +2,14 @@
 #include <iostream>
 #include "tree.h"
 
-
-
+//heuristic find the bin that after place the metal
+//object the remaining room is lest. If there is no
+//bin can hold the metal object, create a new bin and
+//insert into the binary tree.
 
 void binpacking(node* root, int v)
 {
     //search for best bin, if cannot find, insert a new bin
-
     node* curMin = ((root->value - v) >= 0)? root : NULL;
     int   min = (curMin == NULL)?MAX : (root->value - v);
     while(curr != NULL)
