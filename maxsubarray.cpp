@@ -4,7 +4,7 @@
 
 
 // for subarray that cross the mid point
-void find_max_subarray(int arr[], int low, int mid, int high)
+void find_max_subarray_cross(int arr[], int low, int mid, int high)
 {
     int temp_max = 0;
     int left_idx = mid;
@@ -18,7 +18,6 @@ void find_max_subarray(int arr[], int low, int mid, int high)
         }
     }
 
-
     temp_max  = 0;
     int right_idx = mid+1;
     int right_max = INT_MIN;
@@ -31,10 +30,40 @@ void find_max_subarray(int arr[], int low, int mid, int high)
         }
     }
 
-    std::cout << "" << std::end;
-
+    return left_max + right_max;
 }
 
+int find_max_subarray(int arr[], int low, int high)
+{
+    if(low == high) return arr[low];
+
+    int mid = (low + hight)/2;
+
+    int left_max  = find_max_subarray(arr, low,   mid);
+    int right_max = find_max_subarray(arr, mid+1, high);
+    int cross_max = find_max_subarray_cross(arr, low, mid, high);
+
+    return max(left_max, right_max, cross_max);
+}
+
+int find_max_subarray_linear(int arr[], int sz, int& low, int& high)
+{
+    int max  = arr[0];
+    int lpos = 0;
+    int hpos = 0;
+    int max_so_far = arr[0];
+    for(int idx = 1; idx < sz;  ++idx)
+    {
+        if(max_so_far < 0) max_so_far = 0;
+
+        if(max_so_far + arr[idx] > max) {
+            hpos = idx;
+            max = max_so_far + arr[idx];
+            max_so_far += arr[idx];
+        }
+
+    }
+}
 
 int main(){
     int arr[] = {11, -2, 3, 9, -1, 10, 21, -12, 32, 18};
