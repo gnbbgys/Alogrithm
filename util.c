@@ -62,3 +62,13 @@ void reverse(int arr[], int sz)
 }
 
 
+void print_array(int arr[], int n)
+{
+    int i = 0;
+    while(i < n)
+    {
+        print("%d ", arr[i++]);
+    }
+    print("\n");
+}
+
