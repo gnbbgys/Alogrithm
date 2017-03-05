@@ -8,3 +8,6 @@ a.out
 *.*.c.swo
 *.*.cpp.swo
 *.*.h.swo
+.*.swn
+.*.swo
+
