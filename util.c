@@ -24,19 +24,6 @@ void print_array(int arr[], int sz)
     printf("\n ==== end of print array ==== \n");
 }
 
-int  gen_random(int mod, int arr[], int sz)
-{
-    if(sz <= 0) return;
-
-    srand(time(NULL));
-
-    int idx = 0;
-    for(; idx < sz; idx++)
-    {
-        arr[idx] = rand() % mod;
-    }
-}
-
 
 int max(int val1, int val2)
 {
