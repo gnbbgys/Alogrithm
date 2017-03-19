@@ -1,15 +1,16 @@
 #include <stdio.h>
+#include <iostream>
 
-typedef struct node{
-    node* left;
-    node* right;
+struct Node{
+    Node* left;
+    Node* right;
     int data;
     int key;
-}node;
+};
 
-struct node* newnode(int v)
+node* newnode(int v)
 {
-    struct node* nodenew  = (struct node*) malloc(sizeof(node));
+    Node* nodenew  = (Node*) malloc(sizeof(node));
     nodenew->left  = NULL;
     nodenew->right = NULL;
     nodenew->data  = v;
@@ -18,7 +19,7 @@ struct node* newnode(int v)
     return nodenew;
 }
 
-void print_tree(node* root)
+void print_tree(Node* root)
 {
     if(root == NULL) return;
     print_tree(root->left);
@@ -27,7 +28,7 @@ void print_tree(node* root)
 }
 
 //a=[1, 4, 2, 11, 8, 5, 3]
-void blt_min_tree(node* root, int ls, int re, int a[])
+void blt_min_tree(Node* root, int ls, int re, int a[])
 {
     if(ls == re) { //leaf node
         return newnode(a[ls]);
@@ -39,7 +40,7 @@ void blt_min_tree(node* root, int ls, int re, int a[])
     right_tree = blt_min_tree();
 }
 
-int compare_trees(node* t1, node* t2)
+int compare_trees(Node* t1, Node* t2)
 {
     if( t1 == NULL && t2 == NULL) return 1;
     if( t1 == NULL || t2 == NULL) return 0;
@@ -52,7 +53,7 @@ int compare_trees(node* t1, node* t2)
 }
 
 //wrong, assume it's BST already, how to fix it ??
-int get_max(node* head)
+int get_max(Node* head)
 {
     int max = head->data;
     while(head != NULL)
@@ -63,7 +64,7 @@ int get_max(node* head)
 }
 
 //wrong, assume it's BST already, how to fix it ??
-int get_min(node* head)
+int get_min(Node* head)
 {
     int min = head->data;
     while(head != NULL)
@@ -73,7 +74,7 @@ int get_min(node* head)
     }
 }
 
-int is_sub_max(node* h, int v)
+int is_sub_max(Node* h, int v)
 {
     if(h == NULL) return 1;
 
@@ -83,7 +84,7 @@ int is_sub_max(node* h, int v)
     return left_less_v&&irght_less_v&&(h->data < v);
 }
 
-int is_sub_min(node* h, int v)
+int is_sub_min(Node* h, int v)
 {
     if(h == NULL) return 1;
 
@@ -93,7 +94,7 @@ int is_sub_min(node* h, int v)
     return left_less_v&&irght_less_v&&(h->data < v);
 }
 
-int is_bst(node* head)
+int is_bst(Node* head)
 {
     if(head == NULL) return 1;
 
@@ -107,7 +108,7 @@ int is_bst(node* head)
 //without brutal force search, passdown limit
 //when calling this function, write sth like is_bst(root, INT_MIN, INT_MAX);
 //or if the bound of the elements of the tree known TREE_MIN, TREE_MAX
-int is_bst(node* h, int low, int up)
+int is_bst(Node* h, int low, int up)
 {
     if(h == NULL) return 1;
 
@@ -117,6 +118,7 @@ int is_bst(node* h, int low, int up)
     }
     else {return false;}
 }
+
 
 int main()
 {
