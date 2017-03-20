@@ -32,7 +32,7 @@ void insertNode(Node** root, Node* n)
     {
         p = r;
         if(r->key > n->key){
-            r = r->left
+            r = r->left;
         }
         else if(r->key < n->key){
             r = r->right;
@@ -52,11 +52,25 @@ void insertNode(Node** root, Node* n)
 // n pointing to the new node inserted in
 void brtreeInsertFixedUp(Node** root, Node* n)
 {
-    while(n->parent->color == RED){
+    //ONLY for case that n is on the left side
+    while(n->parent->color == RED){         
         //case 1 if uncle is red, then change parent and uncle 
         //to BLACK and change grandpa to RED and recurusive call
         if(n->parent->parent->right->color == RED){
+            //paint parent and uncle to BLACK, paint granpa to RED.
+            //make granpa to be the node inserted and loop
+            n = n->parent->parent;
+            brtreeInsertFixedUp(root, n);
         }
+
+        //case 2 if uncle is BLACK ( then uncle has to be the sential??!!)
+        if(n->parent->right->key == n){
+            n = n->parent;
+            leftRotate(root, n);
+        }
+        n->parent->color = BLACK;
+        n->parent->parent->color = RED;
+        rightRotate(root, n);
     }
 }
 
@@ -92,7 +106,7 @@ void transplant(Node** root, Node* u, Node* v)
 
 
     //delete u
-    delete u;
+    //delete u;
 }
 
 

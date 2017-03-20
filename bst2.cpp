@@ -109,3 +109,36 @@ node* bstFromSortedArray(int arr[], int low, int high)
 
     return curr;
 }
+
+
+//      x              y 
+//     / \            / \
+//    a   y    =>    x   c
+//       / \        / \
+//      b   c      a   b
+
+void leftRotation(Node** root, Node* x)
+{
+    Node* y  = x->right;
+    
+    x->right = y->left;
+
+    if(y->left != NULL){
+        y->left->parent = x;
+    }
+
+    y->left = x;
+    y->parent = x->parent;
+
+    if(x->parent == NULL){ //x is root 
+        root = &y;
+    }
+    else if(x->parent->left.key = x.key){
+        x->parent->left = y;
+    }
+    else if(x->parent->right.key = x.key){
+        x->parent->right = y;
+    }
+
+    x->parent = y;
+}
